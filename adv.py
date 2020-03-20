@@ -115,6 +115,14 @@ for direction in player.current_room.get_exits():
     #the starting room should be an unexplored room
 map[world.starting_room.id] = unexplored_room
 
+#turn new_moves into a queue
+new_moves = Queue()
+#call untried 
+untried(player, new_moves)
+
+#set the reverse directions, just like in the adventure game
+reverse_dir = {"n": "s", "s": "n", "e": "w", "w": "e"}
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
