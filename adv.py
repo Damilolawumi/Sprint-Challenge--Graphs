@@ -51,7 +51,7 @@ def explore(player, moves):
     queue = Queue()
     #add starting room to queue
     queue.enqueue([player.current_room.id])
-    #initialize visited
+    #to store visited nodes
     visited = set()
     #while the queue has places to go
     while queue.size() > 0:
@@ -70,8 +70,11 @@ def explore(player, moves):
                 #otherwise, get rid of the explored route
                 else:
                     #copy
+                    # make a copy of the path
                     been_there = list(route)
+                    # append vertex to the coppied path
                     been_there.append(map[last_visited][exit])
+                    # then enqueue the copied path
                     queue.enqueue(been_there)    
     return []  
 
@@ -92,7 +95,7 @@ def untried(player, new_moves):
         unexplored = explore(player, new_moves)
         #set new room to the player's current room
         new_room = player.current_room.id
-        #go through each unexplored room
+        #loop through each unexplored room
         for room in unexplored:
             #then in that room, check for unexplored exits and add them to new moves
             for direction in map[new_room]:
