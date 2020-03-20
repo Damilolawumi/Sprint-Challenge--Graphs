@@ -42,7 +42,38 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-
+#create a blank dictionary called map
+map = {}
+# create explore method
+def explore(player, moves):
+# Make it into a bfs
+    #initialize Queue
+    queue = Queue()
+    #add starting room to queue
+    queue.enqueue([player.current_room.id])
+    #initialize visited
+    visited = set()
+    #while the queue has places to go
+    while queue.size() > 0:
+        #as exploration continues, remove from queue
+        route = queue.dequeue()
+        #grab the last visited room
+        last_visited = route[-1]
+        #if the last room isn't in visited, add to visited
+        if last_visited not in visited:
+            visited.add(last_visited)
+            # note the exits
+            for exit in map[last_visited]:
+                #if the exit in the map dict is ?, return route
+                if map[last_visited][exit] == '?':
+                    return route
+                #otherwise, get rid of the explored route
+                else:
+                    #copy
+                    been_there = list(route)
+                    been_there.append(map[last_visited][exit])
+                    queue.enqueue(been_there)    
+    return []    
 
 # TRAVERSAL TEST
 visited_rooms = set()
