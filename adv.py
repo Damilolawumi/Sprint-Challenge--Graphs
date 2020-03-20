@@ -76,7 +76,7 @@ def explore(player, moves):
                     been_there.append(map[last_visited][exit])
                     # then enqueue the copied path
                     queue.enqueue(been_there)    
-    return []  
+    return [] 
 
 #create method to check for exits that haven't been tried
 def untried(player, new_moves):
